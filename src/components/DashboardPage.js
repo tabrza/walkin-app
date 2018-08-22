@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person';
+import Form from './Form';
 
 class DashboardPage extends Component {
   state = {
@@ -9,6 +10,14 @@ class DashboardPage extends Component {
     ]
   }
 
+  addPerson = (person) => {
+    const newList = [...this.state.persons];
+    newList.push(person);
+    this.setState({
+      persons: newList
+    });
+  };
+
   render() {
     const allPersons = this.state.persons.map(person => (
       <Person key={person.id} name={person.name} time={person.waitTime} />
@@ -16,6 +25,7 @@ class DashboardPage extends Component {
 
     return (
       <div>
+        <Form addPerson={this.addPerson} />
         {allPersons}
       </div>
     );
