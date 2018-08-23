@@ -41,9 +41,11 @@ class DashboardPage extends Component {
     ));
 
     return (
-      <div>
+      <div className="">
+      <div className="content-container">
         <Form addPerson={this.addPerson} />
         {allPersons}
+      </div>
       </div>
     );
   }

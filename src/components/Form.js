@@ -14,8 +14,9 @@ class Form extends Component {
   // set the content to the value in the input box
   userInputHandler = (e) => {
     const newPerson = { ...this.state.person };
-    newPerson.name = e.target.value;
-
+    newPerson[e.target.name] = e.target.value;
+    // console.log(e.target.name);
+    // input === 'name' ? newPerson.name = e.target.value : newPerson.waitTime = e.target.value;
     this.setState({
       person: newPerson
     });
@@ -38,12 +39,14 @@ class Form extends Component {
     return (
       <div className="input-group content-container">
         <input
+          name="name"
           className="input-group__item text-input"
           placeholder="Name"
           value={this.state.person.name}
           onChange={this.userInputHandler}
         />
         <input
+          name="waitTime"
           className="input-group__item text-input"
           placeholder="Wait Time"
           value={this.state.person.time}
