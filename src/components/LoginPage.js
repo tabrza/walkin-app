@@ -5,7 +5,7 @@ import { startLogin } from '../actions/auth';
 export const LoginPage = ({ startLogin }) => (
   <div className="box-layout">
     <div className="box-layout__box">
-      <h1 className="box-layout__title">BoilerPlate</h1>
+      <h1 className="box-layout__title">Walkin</h1>
       <p>Get Expenses under control.</p>
       <button
         onClick={startLogin}
