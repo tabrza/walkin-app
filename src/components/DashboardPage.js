@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
 import Person from './Person';
 import Form from './Form';
+import { firebase, database } from '../firebase/firebase';
 
 class DashboardPage extends Component {
+  constructor(props) {
+    super(props);
+    this.app = firebase;
+    this.db = database.ref().child('persons');
+  }
   state = {
-    persons: [
-      { id: 1, name: 'Person1', waitTime: 10 },
-      { id: 2, name: 'Person2', waitTime: 20 }
-    ]
+    persons: []
+  }
+
+  componentWillMount() {
+    const updatedList = [...this.state.persons];
+    // DB snapshot
+    this.db.on('child_added', (snap) => {
+      updatedList.push({
+        id: snap.key,
+        name: snap.val().persons.name,
+        waitTime: snap.val().persons.waitTime
+      });
+
+      this.setState({
+        persons: updatedList
+      });
+    });
   }
 
   addPerson = (person) => {
-    const newList = [...this.state.persons];
-    newList.push(person);
-    this.setState({
-      persons: newList
+    this.db.push().set({
+      persons: person
     });
   };
 
