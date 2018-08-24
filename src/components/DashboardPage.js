@@ -20,7 +20,8 @@ class DashboardPage extends Component {
       updatedList.push({
         id: snap.key,
         name: snap.val().person.name,
-        waitTime: snap.val().person.waitTime
+        waitTime: snap.val().person.waitTime,
+        origTime: snap.val().person.origTime
       });
 
       this.setState({
@@ -30,37 +31,44 @@ class DashboardPage extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.timer(), 60000);
+    this.interval = setInterval(() => this.updateTime(), 60000);
   }
 
-  timer = () => {
+  updateTime = () => {
     const list = [...this.state.persons];
-    const dbArray = [];
+    const updatedList = [];
+
     for (let i = 0; i < list.length; i += 1) {
       const person = list[i];
-      if (person.waitTime > 0) {
-        person.waitTime -= 1;
+      let newTime = parseInt(person.waitTime, 10);
+      // console.log('person in array',person);
+      if (newTime > 0) {
+        newTime -= 1;
       }
 
-      const object = {};
-      object[person.id] = {
+      const object = {
+        id: person.id,
         name: person.name,
-        waitTime: person.waitTime
+        waitTime: newTime,
+        origTime: person.origTime
       };
 
-      dbArray.push(object);
+      updatedList.push(object);
+
+      // Write`/persons/${  person.id  }/person/`n the posts list and the user's post list.
+      const updates = {};
+      updates[`/persons/${person.id}/person/`] = object;
+
+      firebase.database().ref().update(updates);
     }
 
-    this.db.set({
-      person: dbArray
-    });
-
     this.setState({
-      persons: list
+      persons: updatedList
     });
   }
 
   addPerson = (person) => {
+    // console.log('person',person);
     this.db.push().set({
       person
     });
@@ -70,7 +78,12 @@ class DashboardPage extends Component {
     // console.log('state',this.state.persons);
     const allPersons = this.state.persons.map(person => (
       // subtract person wait time with counter
-      <Person key={person.id} name={person.name} time={person.waitTime} />
+      <Person
+        key={person.id}
+        name={person.name}
+        time={person.waitTime}
+        origTime={person.origTime}
+      />
     ));
 
     return (

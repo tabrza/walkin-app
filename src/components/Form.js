@@ -26,7 +26,8 @@ class Form extends Component {
     this.props.addPerson(this.state.person);
     const resetPerson = { ...this.state.person };
     resetPerson.name = '';
-    resetPerson.waitTime = '';
+    resetPerson.waitTime = 0;
+    resetPerson.origTime = 0;
     // for (const prop of resetPerson.getOwnPropertyNames(obj)) {
     //   delete obj[prop];
     // }
