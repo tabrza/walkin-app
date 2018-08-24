@@ -4,8 +4,8 @@ class Form extends Component {
   state = {
     person: {
       name: '',
-      waitTime: 0,
-      origTime: 0
+      waitTime: null,
+      origTime: null
     }
   }
 
@@ -23,8 +23,7 @@ class Form extends Component {
     this.props.addPerson(this.state.person);
     const resetPerson = { ...this.state.person };
     resetPerson.name = '';
-    resetPerson.waitTime = 0;
-    resetPerson.origTime = 0;
+    resetPerson.waitTime = '';
 
     this.setState({
       person: resetPerson
@@ -45,7 +44,7 @@ class Form extends Component {
           name="waitTime"
           className="input-group__item text-input"
           placeholder="Wait Time"
-          value={this.state.person.time}
+          value={this.state.person.waitTime}
           onChange={this.userInputHandler}
         />
         <button className="button" onClick={this.addPersonHandler}>Save</button>
