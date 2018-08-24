@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class Form extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
   state = {
     person: {
       name: '',
@@ -28,9 +25,7 @@ class Form extends Component {
     resetPerson.name = '';
     resetPerson.waitTime = 0;
     resetPerson.origTime = 0;
-    // for (const prop of resetPerson.getOwnPropertyNames(obj)) {
-    //   delete obj[prop];
-    // }
+
     this.setState({
       person: resetPerson
     });

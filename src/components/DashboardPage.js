@@ -4,9 +4,8 @@ import Form from './Form';
 import { firebase, database } from '../firebase/firebase';
 
 class DashboardPage extends Component {
-  constructor(props) {
-    super(props);
-    this.app = firebase;
+  constructor() {
+    super();
     this.db = database.ref().child('persons');
   }
   state = {
