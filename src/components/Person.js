@@ -1,13 +1,16 @@
 import React from 'react';
+import ProgressBar from './ProgressBar';
 
 const person = props => (
-  <div className="list-body content-container">
-    <div className="list-item">
-      <p className="list-item--message"><strong> { props.name } </strong></p>
-      <p className="list-item--message"><strong> { props.time } </strong></p>
-    </div>
-    <div className="list-item__data">
-      <p> { props.time } </p>
+  <div className="list-header">
+    <div className="list-body">
+      <div className="list-item">
+        <p className=""><strong> { props.name } </strong></p>
+        <p className=""><strong> { props.time } </strong></p>
+        <div className="list-item__data">
+          <ProgressBar time={props.time} />
+        </div>
+      </div>
     </div>
   </div>
 );

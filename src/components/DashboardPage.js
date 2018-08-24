@@ -19,8 +19,8 @@ class DashboardPage extends Component {
     this.db.on('child_added', (snap) => {
       updatedList.push({
         id: snap.key,
-        name: snap.val().persons.name,
-        waitTime: snap.val().persons.waitTime
+        name: snap.val().person.name,
+        waitTime: snap.val().person.waitTime
       });
 
       this.setState({
@@ -29,23 +29,54 @@ class DashboardPage extends Component {
     });
   }
 
+  componentDidMount() {
+    this.interval = setInterval(() => this.timer(), 60000);
+  }
+
+  timer = () => {
+    const list = [...this.state.persons];
+    const dbArray = [];
+    for (let i = 0; i < list.length; i += 1) {
+      const person = list[i];
+      if (person.waitTime > 0) {
+        person.waitTime -= 1;
+      }
+
+      const object = {};
+      object[person.id] = {
+        name: person.name,
+        waitTime: person.waitTime
+      };
+
+      dbArray.push(object);
+    }
+
+    this.db.set({
+      person: dbArray
+    });
+
+    this.setState({
+      persons: list
+    });
+  }
+
   addPerson = (person) => {
     this.db.push().set({
-      persons: person
+      person
     });
   };
 
   render() {
+    // console.log('state',this.state.persons);
     const allPersons = this.state.persons.map(person => (
+      // subtract person wait time with counter
       <Person key={person.id} name={person.name} time={person.waitTime} />
     ));
 
     return (
-      <div className="">
       <div className="content-container">
         <Form addPerson={this.addPerson} />
         {allPersons}
-      </div>
       </div>
     );
   }

@@ -7,7 +7,8 @@ class Form extends Component {
   state = {
     person: {
       name: '',
-      waitTime: ''
+      waitTime: 0,
+      origTime: 0
     }
   }
 
@@ -15,8 +16,7 @@ class Form extends Component {
   userInputHandler = (e) => {
     const newPerson = { ...this.state.person };
     newPerson[e.target.name] = e.target.value;
-    // console.log(e.target.name);
-    // input === 'name' ? newPerson.name = e.target.value : newPerson.waitTime = e.target.value;
+    if (e.target.name === 'waitTime') newPerson.origTime = e.target.value;
     this.setState({
       person: newPerson
     });
@@ -27,7 +27,7 @@ class Form extends Component {
     const resetPerson = { ...this.state.person };
     resetPerson.name = '';
     resetPerson.waitTime = '';
-    // for (const prop of Object.getOwnPropertyNames(obj)) {
+    // for (const prop of resetPerson.getOwnPropertyNames(obj)) {
     //   delete obj[prop];
     // }
     this.setState({
@@ -37,7 +37,7 @@ class Form extends Component {
 
   render() {
     return (
-      <div className="input-group content-container">
+      <div className="input-group form">
         <input
           name="name"
           className="input-group__item text-input"
