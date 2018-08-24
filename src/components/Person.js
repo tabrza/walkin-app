@@ -6,9 +6,9 @@ const person = props => (
     <div className="list-body">
       <div className="list-item">
         <p className=""><strong> { props.name } </strong></p>
-        <p className=""><strong> { props.time } </strong></p>
+        <p className=""><strong> { props.waitTime } </strong></p>
         <div className="list-item__data">
-          <ProgressBar time={props.time} />
+          <ProgressBar waitTime={props.waitTime} origTime={props.origTime} />
         </div>
       </div>
     </div>

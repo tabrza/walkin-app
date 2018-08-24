@@ -81,7 +81,7 @@ class DashboardPage extends Component {
       <Person
         key={person.id}
         name={person.name}
-        time={person.waitTime}
+        waitTime={person.waitTime}
         origTime={person.origTime}
       />
     ));
