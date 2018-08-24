@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render DashboardPage correctly 1`] = `
-<div>
-  Dashboard Content
+<div
+  className="content-container"
+>
+  <Form
+    addPerson={[Function]}
+  />
 </div>
 `;

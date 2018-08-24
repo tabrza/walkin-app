@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form /> should render Form correctly 1`] = `
+<div
+  className="input-group form"
+>
+  <input
+    className="input-group__item text-input"
+    name="name"
+    onChange={[Function]}
+    placeholder="Name"
+    value=""
+  />
+  <input
+    className="input-group__item text-input"
+    name="waitTime"
+    onChange={[Function]}
+    placeholder="Wait Time"
+  />
+  <button
+    className="button"
+    onClick={[Function]}
+  >
+    Save
+  </button>
+</div>
+`;
