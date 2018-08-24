@@ -14,7 +14,6 @@ class DashboardPage extends Component {
 
   componentWillMount() {
     const updatedList = [...this.state.persons];
-    // DB snapshot
     this.db.on('child_added', (snap) => {
       updatedList.push({
         id: snap.key,
@@ -22,6 +21,19 @@ class DashboardPage extends Component {
         waitTime: snap.val().person.waitTime,
         origTime: snap.val().person.origTime
       });
+
+      this.setState({
+        persons: updatedList
+      });
+    });
+
+    this.db.on('child_removed', (snap) => {
+      for (let i = 0; i < updatedList.length; i += 1) {
+        const person = updatedList[i];
+        if (person.id === snap.key) {
+          updatedList.splice(i, 1);
+        }
+      }
 
       this.setState({
         persons: updatedList
@@ -40,7 +52,6 @@ class DashboardPage extends Component {
     for (let i = 0; i < list.length; i += 1) {
       const person = list[i];
       let newTime = parseInt(person.waitTime, 10);
-      // console.log('person in array',person);
       if (newTime > 0) {
         newTime -= 1;
       }
@@ -54,7 +65,6 @@ class DashboardPage extends Component {
 
       updatedList.push(object);
 
-      // Write`/persons/${  person.id  }/person/`n the posts list and the user's post list.
       const updates = {};
       updates[`/persons/${person.id}/person/`] = object;
 
@@ -67,21 +77,24 @@ class DashboardPage extends Component {
   }
 
   addPerson = (person) => {
-    // console.log('person',person);
     this.db.push().set({
       person
     });
   };
 
+  removePerson = (personId) => {
+    this.db.child(personId).remove();
+  };
+
   render() {
-    // console.log('state',this.state.persons);
     const allPersons = this.state.persons.map(person => (
-      // subtract person wait time with counter
       <Person
         key={person.id}
+        id={person.id}
         name={person.name}
         waitTime={person.waitTime}
         origTime={person.origTime}
+        remove={this.removePerson}
       />
     ));
 
