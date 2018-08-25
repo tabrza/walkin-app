@@ -13,8 +13,8 @@ class DashboardPage extends Component {
   }
 
   componentWillMount() {
-    const updatedList = [...this.state.persons];
     this.db.on('child_added', (snap) => {
+      const updatedList = [...this.state.persons];
       updatedList.push({
         id: snap.key,
         name: snap.val().person.name,
@@ -28,6 +28,7 @@ class DashboardPage extends Component {
     });
 
     this.db.on('child_removed', (snap) => {
+      const updatedList = [...this.state.persons];
       for (let i = 0; i < updatedList.length; i += 1) {
         const person = updatedList[i];
         if (person.id === snap.key) {
