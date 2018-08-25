@@ -2,10 +2,23 @@
 
 exports[`should render DashboardPage correctly 1`] = `
 <div
-  className="content-container"
+  className="background"
 >
-  <Form
-    addPerson={[Function]}
-  />
+  <div
+    className="content-container container"
+  >
+    <Form
+      addPerson={[Function]}
+    />
+  </div>
+  <div
+    className="content-container container"
+  >
+    <p
+      className="text-input"
+    >
+      Please add people to your wait list
+    </p>
+  </div>
 </div>
 `;

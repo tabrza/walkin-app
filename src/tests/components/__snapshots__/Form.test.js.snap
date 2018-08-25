@@ -2,21 +2,29 @@
 
 exports[`<Form /> should render Form correctly 1`] = `
 <div
-  className="input-group form"
+  className="form"
 >
-  <input
-    className="input-group__item text-input"
-    name="name"
-    onChange={[Function]}
-    placeholder="Name"
-    value=""
-  />
-  <input
-    className="input-group__item text-input"
-    name="waitTime"
-    onChange={[Function]}
-    placeholder="Wait Time"
-  />
+  <div
+    className="input-group "
+  >
+    <input
+      className="text-input margin-right"
+      name="name"
+      onChange={[Function]}
+      placeholder="Name"
+      type="text"
+      value=""
+    />
+    <input
+      className="text-input"
+      name="waitTime"
+      onChange={[Function]}
+      pattern="[0-9]*"
+      placeholder="Wait Time"
+      type="text"
+      value=""
+    />
+  </div>
   <button
     className="button"
     onClick={[Function]}
