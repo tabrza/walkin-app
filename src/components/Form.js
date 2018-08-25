@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
   state = {
     person: {
       name: '',
-      waitTime: null,
+      waitTime: '',
       origTime: null
     }
   }
@@ -12,8 +13,15 @@ class Form extends Component {
   // set the content to the value in the input box
   userInputHandler = (e) => {
     const newPerson = { ...this.state.person };
-    newPerson[e.target.name] = e.target.value;
-    if (e.target.name === 'waitTime') newPerson.origTime = e.target.value;
+
+    if (e.target.name === 'waitTime' && e.target.validity.valid) {
+      const time = parseInt(e.target.value, 10);
+      newPerson.origTime = time;
+      newPerson.waitTime = time;
+    } else if (e.target.name === 'name') {
+      newPerson.name = e.target.value;
+    }
+
     this.setState({
       person: newPerson
     });
@@ -35,6 +43,7 @@ class Form extends Component {
       <div className="input-group form">
         <input
           name="name"
+          type="text"
           className="input-group__item text-input"
           placeholder="Name"
           value={this.state.person.name}
@@ -42,6 +51,8 @@ class Form extends Component {
         />
         <input
           name="waitTime"
+          type="text"
+          pattern="[0-9]*"
           className="input-group__item text-input"
           placeholder="Wait Time"
           value={this.state.person.waitTime}
@@ -53,5 +64,9 @@ class Form extends Component {
   }
 }
 
+// validating input
+Form.propTypes = {
+  addPerson: PropTypes.func.isRequired
+};
 
 export default Form;

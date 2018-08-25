@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const progressBar = (props) => {
   const progress = `${(((props.origTime - props.waitTime) / props.origTime) * 100)}%`;
@@ -12,5 +13,10 @@ const progressBar = (props) => {
   );
 };
 
+// validating input
+progressBar.propTypes = {
+  waitTime: PropTypes.number.isRequired,
+  origTime: PropTypes.number.isRequired
+};
 
 export default progressBar;

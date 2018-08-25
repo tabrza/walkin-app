@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import ProgressBar from './ProgressBar';
 
 class Person extends Component {
-
   removePersonHandler = (personId) => {
-    console.log(personId);
     this.props.remove(personId);
   };
 
@@ -25,5 +25,14 @@ class Person extends Component {
     );
   }
 }
+
+// validating input
+Person.propTypes = {
+  remove: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  waitTime: PropTypes.number.isRequired,
+  origTime: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired
+};
 
 export default Person;
