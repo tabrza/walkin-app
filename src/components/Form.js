@@ -40,24 +40,26 @@ class Form extends Component {
 
   render() {
     return (
-      <div className="input-group form">
-        <input
-          name="name"
-          type="text"
-          className="input-group__item text-input"
-          placeholder="Name"
-          value={this.state.person.name}
-          onChange={this.userInputHandler}
-        />
-        <input
-          name="waitTime"
-          type="text"
-          pattern="[0-9]*"
-          className="input-group__item text-input"
-          placeholder="Wait Time"
-          value={this.state.person.waitTime}
-          onChange={this.userInputHandler}
-        />
+      <div className="form">
+        <div className="input-group ">
+          <input
+            name="name"
+            type="text"
+            className="text-input input-group__item"
+            placeholder="Name"
+            value={this.state.person.name}
+            onChange={this.userInputHandler}
+          />
+          <input
+            name="waitTime"
+            type="text"
+            pattern="[0-9]*"
+            className="text-input input-group__item"
+            placeholder="Wait Time"
+            value={this.state.person.waitTime}
+            onChange={this.userInputHandler}
+          />
+        </div>
         <button className="button" onClick={this.addPersonHandler}>Save</button>
       </div>
     );

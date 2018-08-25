@@ -10,18 +10,14 @@ class Person extends Component {
 
   render() {
     return (
-      <div className="list-header">
-        <div className="list-body">
-          <div className="list-item">
+
+          <div className="">
             <p className=""><strong> { this.props.name } </strong></p>
             <p className=""><strong> { this.props.waitTime } </strong></p>
-            <div className="list-item__data">
               <ProgressBar waitTime={this.props.waitTime} origTime={this.props.origTime} />
-            </div>
             <button className="button" onClick={() => this.removePersonHandler(this.props.id)}>Seated</button>
           </div>
-        </div>
-      </div>
+    
     );
   }
 }
