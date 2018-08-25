@@ -11,7 +11,8 @@
   margin-bottom: $m-size;
 
   @media (min-width: $desktop-breakpoint) {
-    margin-bottom: $l-size;
+    margin-bottom: 1.2rem;
+    margin-top: 1.2rem;
   }
 }
 
@@ -25,15 +26,13 @@
   text-decoration: none;
   transition: background .3s ease;
 
-  &:hover {
-    background: $off-white;
-  }
-
   @media (min-width: $desktop-breakpoint) {
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    padding: $m-size;
+    padding: 1rem;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 }
 

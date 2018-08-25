@@ -45,7 +45,7 @@ class Form extends Component {
           <input
             name="name"
             type="text"
-            className="text-input input-group__item"
+            className="text-input margin-right"
             placeholder="Name"
             value={this.state.person.name}
             onChange={this.userInputHandler}
@@ -54,7 +54,7 @@ class Form extends Component {
             name="waitTime"
             type="text"
             pattern="[0-9]*"
-            className="text-input input-group__item"
+            className="text-input"
             placeholder="Wait Time"
             value={this.state.person.waitTime}
             onChange={this.userInputHandler}

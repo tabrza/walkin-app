@@ -9,15 +9,29 @@ class Person extends Component {
   };
 
   render() {
+    const hours = Math.floor(this.props.waitTime / 60);
+    const minutes = Math.floor(this.props.waitTime % 60);
+    let waitTime;
+    if (this.props.waitTime < 2 && this.props.waitTime !== 0) {
+      waitTime = `${minutes} minute`;
+    } else if (this.props.waitTime > 60) {
+      waitTime = `${hours} hour ${minutes} minutes`;
+    } else if (this.props.waitTime < 60) {
+      waitTime = `${minutes} minutes`;
+    } else {
+      waitTime = `${hours} hour`;
+    }
     return (
-
-          <div className="">
-            <p className=""><strong> { this.props.name } </strong></p>
-            <p className=""><strong> { this.props.waitTime } </strong></p>
-              <ProgressBar waitTime={this.props.waitTime} origTime={this.props.origTime} />
-            <button className="button" onClick={() => this.removePersonHandler(this.props.id)}>Seated</button>
-          </div>
-    
+      <div className="grey list-body">
+        <div className="list-item">
+          <p className=""><strong> { this.props.name } </strong></p>
+          <p className=""><strong> { waitTime } </strong></p>
+        </div>
+        <div className="list-item">
+          <ProgressBar waitTime={this.props.waitTime} origTime={this.props.origTime} />
+          <button className="button " onClick={() => this.removePersonHandler(this.props.id)}>Seated</button>
+        </div>
+      </div>
     );
   }
 }

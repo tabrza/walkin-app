@@ -87,7 +87,7 @@ class DashboardPage extends Component {
   };
 
   render() {
-    const allPersons = this.state.persons.map(person => (
+    let allPersons = this.state.persons.map(person => (
       <Person
         key={person.id}
         id={person.id}
@@ -98,10 +98,18 @@ class DashboardPage extends Component {
       />
     ));
 
+    if (this.state.persons.length === 0) {
+      allPersons = <p className="text-input">Please add people to your wait list</p>;
+    }
+
     return (
-      <div className="content-container">
-        <Form addPerson={this.addPerson} />
-        {allPersons}
+      <div className="background">
+        <div className="content-container container">
+          <Form addPerson={this.addPerson} />
+        </div>
+        <div className="content-container container">
+          {allPersons}
+        </div>
       </div>
     );
   }

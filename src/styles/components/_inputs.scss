@@ -5,9 +5,12 @@
   height: 50px;
   padding: $s-size;
   width: 100%;
-  margin-right: 2%;
   border-radius: 5px;
   background-color: #DCDCDC;
+}
+
+.margin-right {
+  margin-right: 5%;
 }
 
 .select {
@@ -17,4 +20,8 @@
 .textarea {
   @extend .text-input;
   height: 10rem;
+}
+
+body {
+    background-color: #DCDCDC;
 }

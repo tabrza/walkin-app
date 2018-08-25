@@ -3,3 +3,16 @@
   max-width: 80rem;
   padding: 0 $m-size;
 }
+
+.container {
+  background-color: white;
+  margin: 20px auto 20px auto;
+  max-width: 80rem;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.grey {
+  background-color: #DCDCDC;
+  border-radius: 5px;
+}
