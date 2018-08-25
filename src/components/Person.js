@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ProgressBar from './ProgressBar';
 
 class Person extends Component {
-  removePersonHandler = (personId) => {
+  removePersonHandler = (personId) => { // remove person from list if seated
     this.props.remove(personId);
   };
 
@@ -28,7 +28,10 @@ class Person extends Component {
           <p className=""><strong> { waitTime } </strong></p>
         </div>
         <div className="list-item">
-          <ProgressBar waitTime={this.props.waitTime} origTime={this.props.origTime} />
+          <ProgressBar
+            waitTime={this.props.waitTime}
+            origTime={this.props.origTime}
+          />
           <button className="button " onClick={() => this.removePersonHandler(this.props.id)}>Seated</button>
         </div>
       </div>

@@ -13,6 +13,7 @@ class DashboardPage extends Component {
   }
 
   componentWillMount() {
+    // push new value to firebase db
     this.db.on('child_added', (snap) => {
       const updatedList = [...this.state.persons];
       updatedList.push({
@@ -27,6 +28,7 @@ class DashboardPage extends Component {
       });
     });
 
+    // remove 'seated' guest from db
     this.db.on('child_removed', (snap) => {
       const updatedList = [...this.state.persons];
       for (let i = 0; i < updatedList.length; i += 1) {
@@ -43,13 +45,14 @@ class DashboardPage extends Component {
   }
 
   componentDidMount() {
+    // run updatetime() function every minute
     this.interval = setInterval(() => this.updateTime(), 60000);
   }
 
   updateTime = () => {
     const list = [...this.state.persons];
     const updatedList = [];
-
+    // check wait time > 0 and update with new time
     for (let i = 0; i < list.length; i += 1) {
       const person = list[i];
       let newTime = parseInt(person.waitTime, 10);
@@ -68,7 +71,7 @@ class DashboardPage extends Component {
 
       const updates = {};
       updates[`/persons/${person.id}/person/`] = object;
-
+      // update firebase
       firebase.database().ref().update(updates);
     }
 
@@ -77,13 +80,13 @@ class DashboardPage extends Component {
     });
   }
 
-  addPerson = (person) => {
+  addPerson = (person) => { // add person to firebase db
     this.db.push().set({
       person
     });
   };
 
-  removePerson = (personId) => {
+  removePerson = (personId) => { // remove person from firebase db
     this.db.child(personId).remove();
   };
 

@@ -13,7 +13,7 @@ class Form extends Component {
   // set the content to the value in the input box
   userInputHandler = (e) => {
     const newPerson = { ...this.state.person };
-
+    // update values depending on input value
     if (e.target.name === 'waitTime' && e.target.validity.valid) {
       const time = parseInt(e.target.value, 10);
       newPerson.origTime = time;
@@ -27,7 +27,7 @@ class Form extends Component {
     });
   };
 
-  addPersonHandler = () => {
+  addPersonHandler = () => { // clear state and add person prop function to db
     this.props.addPerson(this.state.person);
     const resetPerson = { ...this.state.person };
     resetPerson.name = '';
